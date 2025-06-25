@@ -91,10 +91,14 @@ namespace  CursoLINQ
                 .Select(e => new {
                     Nombre = e.Nombre.ToUpper(),
                     Edad = e.Edad,
-                    Carrera = $"Carrera: {e.Carrera}"
+                    Carrera = $"con la carrera de: {e.Carrera}"
                 });
-            Console.WriteLine($"\nAnonimos, eeeee:");
-            
+            Console.WriteLine($"\nAnonimos, :");
+            foreach (var estudiante in resumen)
+            {
+                Console.WriteLine($"-El estudiante {estudiante.Nombre} de {estudiante.Edad} años, {estudiante.Carrera}.");
+            }
+
 
 
             Console.ReadKey();
