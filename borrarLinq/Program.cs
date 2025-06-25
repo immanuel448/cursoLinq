@@ -1,6 +1,5 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace borrarLinq
+﻿
+namespace  CursoLINQ
 {
     public class Estudiantes
     {
@@ -25,40 +24,36 @@ namespace borrarLinq
             };
 
             //LINQ-----------------------
-            //where, filtrar datos
-            var estudiantesIngenieria =
-                estudiantes.Where(e => e.Carrera == "ingeniería");
-            Console.WriteLine($"\nLos estudiantes que estudian ingeniería son:");
-            foreach (var item in estudiantesIngenieria)
+            //where
+            var estudiantesDeIngenieria = estudiantes.Where(e => e.Carrera == "Ingeniería");
+            Console.WriteLine($"\nWhere, Los estudiantes que estudian Ingeniería son:");
+            foreach (var estudiante in estudiantesDeIngenieria)
             {
-                Console.WriteLine($"-{item.Nombre} con {item.Edad} años.");
+                Console.WriteLine($"{estudiante.Nombre} con {estudiante.Edad} años.");
             }
-            
-            //select, elegir los datos para mostrar
+
+            //select
             var soloNombres = estudiantes.Select(e => e.Nombre);
-            Console.WriteLine($"\nSolo nombres de los estudiantes:");
-            foreach (var nombre in soloNombres)
+            Console.WriteLine($"\nSelect, Solo nombres de los estudiantes:");
+            foreach (var estudiante in soloNombres)
             {
-                Console.WriteLine($"-{nombre}.");
+                Console.WriteLine($"-{estudiante}.");
             }
 
-            //orderBy, ordenamiento lógico (orden ascendente)
-            var ordenarEdadAscendente = estudiantes.OrderBy(e => e.Edad);
-            Console.WriteLine($"\nOrdenar estudiantes por edad ascendente:");
-            foreach (var estudiante in ordenarEdadAscendente)
-            {
-                Console.WriteLine($"-{estudiante.Nombre} de {estudiante.Edad} años, estudiante de {estudiante.Carrera}.");
-            }
-
-            //OrderByDescending, ordenamiento lógico (orden descendente)
-            var ordenarEdadDescendente = estudiantes.OrderByDescending(e => e.Edad);
-            Console.WriteLine($"\nOrdenar estudiantes por edad descendente:");
-            foreach (var estudiante in ordenarEdadDescendente)
+            //orderBy, OrderByDescending
+            var ordenarEdad = estudiantes.OrderBy(e => e.Edad);
+            Console.WriteLine($"\nOrderBy, Ordenar estudiantes por edad ascendente:");
+            foreach (var estudiante in ordenarEdad)
             {
                 Console.WriteLine($"-{estudiante.Nombre} de {estudiante.Edad} años, estudiante de {estudiante.Carrera}.");
             }
 
-
+            ordenarEdad = estudiantes.OrderByDescending(e => e.Edad);
+            Console.WriteLine($"\nOrderByDescending, Ordenar estudiantes por edad descendente:");
+            foreach (var item in ordenarEdad)
+            {
+                Console.WriteLine($"-{item.Nombre} de {item.Edad} años, estudiante de {item.Carrera}.");
+            }
 
 
 

@@ -1,1 +1,1 @@
-# borrarLinq
+# borrador para el video
