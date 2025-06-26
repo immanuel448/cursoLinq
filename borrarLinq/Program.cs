@@ -24,7 +24,7 @@ namespace  CursoLINQ
             };
 
             //LINQ-----------------------
-            //Where, filtrar datos
+            // WHERE: Permite filtrar elementos que cumplan una condición
             var estudiantesDeIngenieria = estudiantes.Where(e => e.Carrera == "Ingeniería");
             Console.WriteLine($"\nWhere, Los estudiantes que estudian Ingeniería son:");
             foreach (var estudiante in estudiantesDeIngenieria)
@@ -32,7 +32,7 @@ namespace  CursoLINQ
                 Console.WriteLine($"{estudiante.Nombre} con {estudiante.Edad} años.");
             }
 
-            //Select, elegir los datos para mostrar
+            // SELECT: Proyecta cada elemento en una nueva forma (por ejemplo, seleccionar una propiedad)
             var soloNombres = estudiantes.Select(e => e.Nombre);
             Console.WriteLine($"\nSelect, Solo nombres de los estudiantes:");
             foreach (var estudiante in soloNombres)
@@ -40,7 +40,7 @@ namespace  CursoLINQ
                 Console.WriteLine($"-{estudiante}.");
             }
 
-            //OrderBy, ordenamiento lógico (orden ascendente)
+            // ORDERBY: Ordena los elementos en orden ascendente
             var ordenarEdad = estudiantes.OrderBy(e => e.Edad);
             Console.WriteLine($"\nOrderBy, Ordenar estudiantes por edad ascendente:");
             foreach (var estudiante in ordenarEdad)
@@ -48,7 +48,7 @@ namespace  CursoLINQ
                 Console.WriteLine($"-{estudiante.Nombre} de {estudiante.Edad} años, estudiante de {estudiante.Carrera}.");
             }
 
-            //OrderByDescending, ordenamiento lógico (orden descendente)
+            // ORDERBYDESCENDING: Ordena los elementos en orden descendente
             ordenarEdad = estudiantes.OrderByDescending(e => e.Edad);
             Console.WriteLine($"\nOrderByDescending, Ordenar estudiantes por edad descendente:");
             foreach (var estudiante in ordenarEdad)
@@ -56,15 +56,20 @@ namespace  CursoLINQ
                 Console.WriteLine($"-{estudiante.Nombre} de {estudiante.Edad} años, estudiante de {estudiante.Carrera}.");
             }
 
-            //GroupBy, agrupa la selección eeee
-            var estIngenieria = estudiantes.GroupBy(e => e.Carrera).Select(grupo => new
+            // GROUPBY: Agrupa elementos que tienen una misma clave
+            // GROUPBY: Agrupa elementos que tienen una misma clave
+            var conteoPorCarrera = estudiantes.GroupBy(e => e.Carrera).Select(grupo => new
+                {
+                    Carrera = grupo.Key,
+                    Cantidad = grupo.Count()
+                });
+            Console.WriteLine("\nGROUPBY, Cantidad de estudientes por carrera:");
+            foreach (var grupo in conteoPorCarrera)
             {
-                Nombre = grupo.Key,
-                Cantidad = grupo.Count()
-            });
+                Console.WriteLine($"- {grupo.Carrera}: {grupo.Cantidad} estudiante(s)");
+            }
 
-
-            //Any, para saber si se cumple alguna condición
+            // ANY: Devuelve true si al menos un elemento cumple una condición
             var ciertaEdad = estudiantes.Any(e => e.Edad > 18);
             Console.WriteLine($"\nAny, Saber si hay extudiantes mayores de 20 años:");
             if (ciertaEdad)
@@ -76,17 +81,17 @@ namespace  CursoLINQ
                 Console.WriteLine($"No hay ningún estudiante mayor de 20 años:");
             }
 
-            //First, FirstOrDefault, para encontrar el primer elemento
+            // FIRSTORDEFAULT: Devuelve el primer elemento o un valor por defecto si no hay elementos
             var primero = estudiantes.OrderBy(e => e.Nombre).FirstOrDefault();
             Console.WriteLine($"\nFirst, nos devuelve el primer nombre ordenado alfabéticamente:");
             Console.WriteLine($"El nombre del primer estudiante en orden alfabético es {primero}.");
-            
-            //Average, trabaja sobre números y devuelve el promedio de los mismos
+
+            // AVERAGE: Calcula el promedio de los valores numéricos
             var promedio = estudiantes.Average(e => e.Edad);
             Console.WriteLine($"\nAverage, Se obtiene el promedio de la edad:");
             Console.WriteLine($"El promedio de la edad de los estudientes es de {primero} años.");
 
-            //Select con anónimos, permite personalizar la salida
+            // SELECT con objetos anónimos: Proyección personalizada de los datos
             var resumen = estudiantes
                 .Select(e => new {
                     Nombre = e.Nombre.ToUpper(),
@@ -98,8 +103,6 @@ namespace  CursoLINQ
             {
                 Console.WriteLine($"-El estudiante {estudiante.Nombre} de {estudiante.Edad} años, {estudiante.Carrera}.");
             }
-
-
 
             Console.ReadKey();
         }
