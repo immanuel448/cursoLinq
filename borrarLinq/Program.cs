@@ -60,15 +60,11 @@ namespace  CursoLINQ
             //}
 
             // GROUPBY: Agrupa elementos que tienen una misma clave
-            //var conteoPorCarrera = estudiantes.GroupBy(e => e.Carrera).Select(grupo => new
+            //var conteoPorCarrera = estudiantes.GroupBy(e => e.Carrera == "Ingeniería");
+            //Console.WriteLine("\nGROUPBY, Cantidad de estudiantes por carrera:");
+            //foreach (var grupo in conteoPorCarrera)
             //{
-            //    Carrera = grupo.Key,
-            //    Cantidad = grupo.Count()
-            //});
-            //Console.WriteLine("\n GROUPBY, Cantidad de estudiantes por carrera:");
-            //foreach (var elemento in conteoPorCarrera)
-            //{
-            //    Console.WriteLine($"La carrera de {elemento.Carrera} tiene {elemento.Cantidad} estudiantes");
+            //    Console.WriteLine($"La carrera de {grupo.Key} tiene {grupo.Count()} estudiantes");
             //}
 
             // ANY: Devuelve true si al menos un elemento cumple una condición
